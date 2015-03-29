@@ -34,3 +34,7 @@ Farmers' Market
   * buyable
   * upside-down heart
   * gray or light brown
+* tomato or potato (alternate)
+  * buyable
+  * long oval
+  * red/dark brown
