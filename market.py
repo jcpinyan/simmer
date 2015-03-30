@@ -8,4 +8,4 @@ class Ingredient:
       self.shape = shape
 
    def __str__(self):
-      return 'Ingredient (%s, %s, %s, %s)' % (self.name, self.canBuy, self.color, self.shape)
+      return 'Ingredient("%s", %s, "%s", "%s")' % (self.name, self.canBuy, self.color, self.shape)
