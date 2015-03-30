@@ -9,3 +9,10 @@ class Ingredient:
 
    def __str__(self):
       return 'Ingredient("%s", %s, "%s", "%s")' % (self.name, self.canBuy, self.color, self.shape)
+
+carrot = Ingredient('carrot', True,  'orange', 'triangle')
+onion  = Ingredient('onion',  True,  'white',  'circle')
+celery = Ingredient('celery', True,  'yellow', 'rectangle')
+pepper = Ingredient('pepper', True,  'green',  'square')
+garlic = Ingredient('garlic', True,  'tan',    'heart')
+herbs  = Ingredient('herbs',  False, 'brown',  'hourglass')
