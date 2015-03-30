@@ -30,6 +30,7 @@ basket = {i:0 for i in farmersMarket}
 
 def purchase(basket,farmersMarket,shoppingDict):
    '''moves requested items from farmers market to basket'''
+   # verify that market has the requested amounts
    for (k,v) in shoppingDict.items():
       try:
          assert v <= farmersMarket[k]
