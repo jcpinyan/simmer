@@ -25,8 +25,8 @@ players = 4
 maxIngred = players+2
 
 # initialize market
-farmersMarket = {i.name:maxIngred for i in [carrot,onion,celery,pepper,garlic]}
-farmersMarket[herbs.name]=5
+farmersMarket = {i:maxIngred for i in [carrot,onion,celery,pepper,garlic]}
+farmersMarket[herbs]=5
 
 # initialize basket
 basket = {i:0 for i in farmersMarket}
