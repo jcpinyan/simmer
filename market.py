@@ -22,8 +22,19 @@ players = 4
 maxIngred = players+2
 
 # initialize market
-market = {i.name:maxIngred for i in [carrot,onion,celery,pepper,garlic]}
-market[herbs.name]=5
+farmersMarket = {i.name:maxIngred for i in [carrot,onion,celery,pepper,garlic]}
+farmersMarket[herbs.name]=5
 
 # initialize basket
-basket = {i:0 for i in market}
+basket = {i:0 for i in farmersMarket}
+
+def purchase(basket,farmersMarket,shoppingDict):
+   '''moves requested items from farmers market to basket'''
+   for (k,v) in shoppingDict.items():
+      try:
+         assert v <= farmersMarket[k]
+      except AssertionError:
+         print("Farmers Market only has",farmersMarket[k],k,"but you want",v)
+         return(False)
+   return(True)
+   
