@@ -16,3 +16,9 @@ celery = Ingredient('celery', True,  'yellow', 'rectangle')
 pepper = Ingredient('pepper', True,  'green',  'square')
 garlic = Ingredient('garlic', True,  'tan',    'heart')
 herbs  = Ingredient('herbs',  False, 'brown',  'hourglass')
+
+players = 4
+maxIngred = players+2
+
+market = {i.name:maxIngred for i in [carrot,onion,celery,pepper,garlic]}
+market[herbs.name]=5
