@@ -38,3 +38,12 @@ Farmers' Market
   * buyable
   * long oval
   * red/dark brown
+
+
+Stretches
+---
+
+Kitchen
+* highlight which recipes can be made
+* highlight which recipes can be made for free
+* highlight which recipes opponents can make
