@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 class Ingredient:
+   '''Ingredients available in the market'''
    def __init__(self, name, canBuy, color, shape):
       self.name = name
       self.canBuy = canBuy
@@ -20,5 +21,9 @@ herbs  = Ingredient('herbs',  False, 'brown',  'hourglass')
 players = 4
 maxIngred = players+2
 
+# initialize market
 market = {i.name:maxIngred for i in [carrot,onion,celery,pepper,garlic]}
 market[herbs.name]=5
+
+# initialize basket
+basket = {i:0 for i in market}
