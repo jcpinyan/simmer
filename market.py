@@ -28,22 +28,25 @@ class Supply:
    '''Ingredients available in the market'''
    def __init__(self, name, carrots, onions, celeries, peppers, garlics, bouquets):
       self.name = name
-      self.carrots = carrots
-      self.onions = onions
-      self.celeries = celeries
-      self.peppers = peppers
-      self.garlics = garlics
-      self.bouquets = bouquets
+      self.ingredients = {carrot:carrots, onion:onions, celery:celeries, pepper:peppers, garlic: garlics, herbs: bouquets}
+#      self.carrot = carrots
+#      self.onion = onions
+#      self.celery = celeries
+#      self.pepper = peppers
+#      self.garlic = garlics
+#      self.herbs = herbs
+#      self.veggies = carrots + onions + celeries + peppers + garlics
+#      self.total = self.veggies + herbs
 
    def __hash__(self):
       return hash(self.name)
 
-   def __str__(self):
-      return 'Supply("%s", %d, %d, %d, %d, %d, %d)' % (self.name, self.carrots, self.onions, self.celeries, self.peppers, self.garlics, self.bouquets)
+ #  def __str__(self):
+ #     return 'Supply("%s", %d, %d, %d, %d, %d, %d)' % (self.name, self.carrot, self.onion, self.celery, self.pepper, self.garlic, self.herbs)
 
-   def display(self):
-      '''displays the contents of the basket formatted nicely'''
-      return '%s\nCarrots: %d\nOnions: %d\nCeleries: %d\nPeppers: %d\nGarlics: %d\nHerb Bouquets: %d' % (self.name, self.carrots, self.onions, self.celeries, self.peppers, self.garlics, self.bouquets)
+ #  def display(self):
+ #     '''displays the contents of the basket formatted nicely'''
+ #     return '%s\nCarrots: %d\nOnions: %d\nCeleries: %d\nPeppers: %d\nGarlics: %d\nHerb Bouquets: %d' % (self.name, self.carrot, self.onion, self.celery, self.pepper, self.garlic, self.herbs)
 
 
 # initialize market
@@ -55,14 +58,28 @@ farmersMarket = Supply('farmersMarket',maxIngred,maxIngred,maxIngred,maxIngred,m
 # basket = {i:0 for i in farmersMarket}
 basket = Supply('basket',0,0,0,0,0,0)
 
-def purchase(basket,farmersMarket,shoppingDict):
-   '''moves requested items from farmers market to basket'''
-   # verify that market has the requested amounts
-   for (k,v) in shoppingDict.items():
+def checkMarket(basket,farmersMarket,request):
+   '''verify that market has the requested amounts'''
+   for (k,v) in request.ingredients.items():
       try:
-         assert v <= farmersMarket[k]
+         assert v <= farmersMarket.ingredients[k]
       except AssertionError:
-         print("Farmers Market only has",farmersMarket[k],k,"but you want",v)
+         print("Farmers Market only has",farmersMarket.ingredients[k],k,"but you want",v)
          return(False)
    return(True)
+   
+def checkRequest(request)
+   '''verify that request is valid'''
+   inv_map = {}
+   for (k, v) in request.ingredients.items():
+      inv_map[v] = inv_map.get(v, [])
+      inv_map[v].append(k)
+   if len(inv_map[1]) == 3 and len(inv_map[0]) == 3 and request.ingredients[herbs] = 0:
+      return(True)
+   elif len(inv_map[2]) == 1 and len(inv_map[0]) == 5 and request.ingredients[herbs] = 0:
+      return(True)
+   elif request.ingredients[herbs] = 1 and len(inv_map[0] == 5:
+      return(True)
+   else:
+      return(False)
    
