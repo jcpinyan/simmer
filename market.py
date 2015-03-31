@@ -78,7 +78,7 @@ def checkRequest(request):
       return(True)
    elif len(inv_map[2]) == 1 and len(inv_map[0]) == 5 and request.ingredients[herbs] == 0:
       return(True)
-   elif request.ingredients[herbs] == 1 and len(inv_map[0] == 5:
+   elif request.ingredients[herbs] == 1 and len(inv_map[0]) == 5:
       return(True)
    else:
       return(False)
