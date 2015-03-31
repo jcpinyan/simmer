@@ -68,7 +68,7 @@ def checkMarket(basket,farmersMarket,request):
          return(False)
    return(True)
    
-def checkRequest(request)
+def checkRequest(request):
    '''verify that request is valid'''
    inv_map = {}
    for (k, v) in request.ingredients.items():
