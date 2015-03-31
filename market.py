@@ -74,11 +74,11 @@ def checkRequest(request):
    for (k, v) in request.ingredients.items():
       inv_map[v] = inv_map.get(v, [])
       inv_map[v].append(k)
-   if len(inv_map[1]) == 3 and len(inv_map[0]) == 3 and request.ingredients[herbs] = 0:
+   if len(inv_map[1]) == 3 and len(inv_map[0]) == 3 and request.ingredients[herbs] == 0:
       return(True)
-   elif len(inv_map[2]) == 1 and len(inv_map[0]) == 5 and request.ingredients[herbs] = 0:
+   elif len(inv_map[2]) == 1 and len(inv_map[0]) == 5 and request.ingredients[herbs] == 0:
       return(True)
-   elif request.ingredients[herbs] = 1 and len(inv_map[0] == 5:
+   elif request.ingredients[herbs] == 1 and len(inv_map[0] == 5:
       return(True)
    else:
       return(False)
