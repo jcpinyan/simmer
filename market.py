@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+from collections import defaultdict
+
 class Ingredient:
    '''Ingredients available in the market'''
    def __init__(self, name, canBuy, color, shape):
@@ -70,9 +72,8 @@ def checkMarket(basket,farmersMarket,request):
    
 def checkRequest(request):
    '''verify that request is valid'''
-   inv_map = {}
+   inv_map = defaultdict(list) 
    for (k, v) in request.ingredients.items():
-      inv_map[v] = inv_map.get(v, [])
       inv_map[v].append(k)
    if len(inv_map[1]) == 3 and len(inv_map[0]) == 3 and request.ingredients[herbs] == 0:
       return(True)
