@@ -33,24 +33,12 @@ class Supply:
    def __init__(self, name, carrots, onions, celeries, peppers, garlics, bouquets):
       self.name = name
       self.ingredients = {carrot:carrots, onion:onions, celery:celeries, pepper:peppers, garlic: garlics, herbs: bouquets}
-#      self.carrot = carrots
-#      self.onion = onions
-#      self.celery = celeries
-#      self.pepper = peppers
-#      self.garlic = garlics
-#      self.herbs = herbs
-#      self.veggies = carrots + onions + celeries + peppers + garlics
-#      self.total = self.veggies + herbs
 
    def __hash__(self):
       return hash(self.name)
 
- #  def __str__(self):
- #     return 'Supply("%s", %d, %d, %d, %d, %d, %d)' % (self.name, self.carrot, self.onion, self.celery, self.pepper, self.garlic, self.herbs)
-
- #  def display(self):
- #     '''displays the contents of the basket formatted nicely'''
- #     return '%s\nCarrots: %d\nOnions: %d\nCeleries: %d\nPeppers: %d\nGarlics: %d\nHerb Bouquets: %d' % (self.name, self.carrot, self.onion, self.celery, self.pepper, self.garlic, self.herbs)
+   def __str__(self):
+      return 'Supply("%s", %d, %d, %d, %d, %d, %d)' % (self.name, self.ingredients[carrot], self.ingredients[onion], self.ingredients[celery], self.ingredients[pepper], self.ingredients[garlic], self.ingredients[herbs])
 
    def publish(self):
       '''prints name of Supply and how many of each item'''
