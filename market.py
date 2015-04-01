@@ -26,6 +26,7 @@ herbs  = Ingredient('herbs',  False, 'brown',  'hourglass')
 
 players = 4
 maxIngred = players+2
+HERBS = 5
 
 class Supply:
    '''Ingredients available in the market'''
@@ -63,7 +64,7 @@ class Supply:
 # initialize market
 #farmersMarket = {i:maxIngred for i in [carrot,onion,celery,pepper,garlic]}
 #farmersMarket[herbs]=5
-farmersMarket = Supply('farmersMarket',maxIngred,maxIngred,maxIngred,maxIngred,maxIngred,5)
+farmersMarket = Supply('farmersMarket',maxIngred,maxIngred,maxIngred,maxIngred,maxIngred,HERBS)
 
 # initialize basket
 # basket = {i:0 for i in farmersMarket}
