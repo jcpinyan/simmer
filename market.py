@@ -16,6 +16,7 @@ class Ingredient:
    def __str__(self):
       return 'Ingredient("%s", %s, "%s", "%s")' % (self.name, self.canBuy, self.color, self.shape)
 
+# global definitions of ingredients
 carrot = Ingredient('carrot', True,  'orange', 'triangle')
 onion  = Ingredient('onion',  True,  'white',  'circle')
 celery = Ingredient('celery', True,  'yellow', 'rectangle')
@@ -49,6 +50,14 @@ class Supply:
  #  def display(self):
  #     '''displays the contents of the basket formatted nicely'''
  #     return '%s\nCarrots: %d\nOnions: %d\nCeleries: %d\nPeppers: %d\nGarlics: %d\nHerb Bouquets: %d' % (self.name, self.carrot, self.onion, self.celery, self.pepper, self.garlic, self.herbs)
+
+   def publish(self):
+      '''prints name of Supply and how many of each item'''
+      print(self.name)
+      for (k,v) in self.ingredients.items():
+         print(k.name,v,sep='\t')
+
+
 
 
 # initialize market
