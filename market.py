@@ -47,18 +47,13 @@ class Supply:
          print(k.name,v,sep='\t')
 
 
-
-
 # initialize market
-#farmersMarket = {i:maxIngred for i in [carrot,onion,celery,pepper,garlic]}
-#farmersMarket[herbs]=5
 farmersMarket = Supply('farmersMarket',maxIngred,maxIngred,maxIngred,maxIngred,maxIngred,HERBS)
 
 # initialize basket
-# basket = {i:0 for i in farmersMarket}
 basket = Supply('basket',0,0,0,0,0,0)
 
-def checkMarket(basket,farmersMarket,request):
+def checkMarket(farmersMarket,request):
    '''verify that market has the requested amounts'''
    for (k,v) in request.ingredients.items():
       try:
@@ -80,5 +75,22 @@ def checkRequest(request):
    elif request.ingredients[herbs] == 1 and len(inv_map[0]) == 5:
       return(True)
    else:
+      raise ValueError('invalid request')
       return(False)
+
+def buy(basket,farmersMarket,request):
+   '''gives basket the requested ingredients from farmersMarket'''
+   try:
+      assert checkMarket(farmersMarket, request) and checkRequest(request)
+   except AssertionError:
+      print("Try again with a valid request for this market.")
+      return(basket,farmersMarket)
+   for (k,v) in request.ingredients.items():
+      basket.ingredients[k]+=v
+      farmersMarket.ingredients[k]-=v
+   return(basket,farmersMarket)
+
+
+
+
    
