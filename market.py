@@ -80,8 +80,11 @@ def checkRequest(request):
 # TODO: error message so that it says specifically what is wrong with the request.
 
 
-def buy(basket,farmersMarket,request):
-   '''gives basket the requested ingredients from farmersMarket'''
+def transaction(basket,farmersMarket,request):
+   '''moves Ingredients between two Supply objects
+      example: get Ingredients from market for basket
+      example: pay Ingredients from basket to market
+   '''
    try:
       assert checkMarket(farmersMarket, request) and checkRequest(request)
    except AssertionError:
