@@ -75,8 +75,10 @@ def checkRequest(request):
    elif request.ingredients[herbs] == 1 and len(inv_map[0]) == 5:
       return(True)
    else:
-      raise ValueError('invalid request')
+      print('invalid request')
       return(False)
+# TODO: error message so that it says specifically what is wrong with the request.
+
 
 def buy(basket,farmersMarket,request):
    '''gives basket the requested ingredients from farmersMarket'''
