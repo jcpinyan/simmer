@@ -33,6 +33,11 @@ from collections import OrderedDict
 class Supply:
    '''Ingredients available in the market'''
    def __init__(self, name, carrots, onions, celeries, peppers, garlics, bouquets):
+      try:
+         assert isinstance(carrots,int) and isinstance(onions,int) and isinstance(celeries,int) and isinstance(peppers,int) and isinstance(garlics,int) and isinstance(bouquets,int)
+      except AssertionError:
+         print('ingredients must be ints')
+         raise
       self.name = name
       self.ingredients = OrderedDict([(carrot,carrots), (onion,onions), (celery,celeries), (pepper,peppers), (garlic,garlics), (herbs,bouquets)])
 
