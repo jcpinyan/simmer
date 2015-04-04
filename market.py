@@ -28,11 +28,13 @@ players = 4
 maxIngred = players+2
 HERBS = 5
 
+from collections import OrderedDict
+
 class Supply:
    '''Ingredients available in the market'''
    def __init__(self, name, carrots, onions, celeries, peppers, garlics, bouquets):
       self.name = name
-      self.ingredients = {carrot:carrots, onion:onions, celery:celeries, pepper:peppers, garlic: garlics, herbs: bouquets}
+      self.ingredients = OrderedDict([(carrot,carrots), (onion,onions), (celery,celeries), (pepper,peppers), (garlic,garlics), (herbs,bouquets)])
 
    def __hash__(self):
       return hash(self.name)
