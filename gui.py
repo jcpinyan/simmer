@@ -2,6 +2,7 @@
 
 import tkinter 
 from market import *
+from interaction import *
 
 class simpleapp(tkinter.Tk):
     def __init__(self,parent):
@@ -35,10 +36,10 @@ class simpleapp(tkinter.Tk):
         crops.grid(column=2, row=0, columnspan=5, sticky='EW')
       
       # widget for a label
-        self.labelVariable = tkinter.StringVar()
-        label = tkinter.Label(self, textvariable=self.labelVariable,
+        self.messageLine = tkinter.StringVar()
+        message = tkinter.Label(self, textvariable=self.messageLine,
                              anchor="w", fg="black", bg="green")
-        label.grid(column=1, row=10, columnspan=5, sticky='EW')
+        message.grid(column=1, row=10, columnspan=5, sticky='EW')
       # self.labelVariable.set(u"Action")
 
       #tell layout manager to resize column 1 when resizing
@@ -47,7 +48,14 @@ class simpleapp(tkinter.Tk):
       #self.resizable(False,False)
 
     def WantToShop(self):
-        self.labelVariable.set("You want to go to the Farmers Market")
+        self.messageLine.set("You want to go to the Farmers Market")
+        iWant = makeOrder()
+        try:
+            checkRequest(iWant)
+            self.messageLine.set(iWant.display())
+        except ValueError as e:
+            self.messageLine.set(e)  
+            return
 
    # def OnPressEnter(self,event):
      # self.labelVariable.set(self.entryVariable.get()+"You pressed Enter!")

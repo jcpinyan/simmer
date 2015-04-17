@@ -14,7 +14,8 @@ class Ingredient:
         return hash(self.name)
 
     def __str__(self):
-        return 'Ingredient("{0}", {1}, "{2}", "{3}")'.format(self.name, self.canBuy, self.color, self.shape)
+        return 'Ingredient("{0}", {1}, "{2}", "{3}")'.format(self.name, \
+            self.canBuy, self.color, self.shape)
 
 # global definitions of ingredients
 carrot = Ingredient('carrot', True,  'orange', 'triangle')
@@ -58,6 +59,12 @@ class Supply:
         for (k,v) in self.ingredients.items():
             print(k.name,v,sep='\t')
 
+    def display(self):
+        '''prepares string of market status'''
+        status = str()
+        for (k,v) in self.ingredients.items():
+            status+=k.name+': '+str(v)+' '
+        return(status)
 
 
 # initialize market
@@ -80,22 +87,19 @@ def checkRequest(request):
     '''verify that request is valid'''
     inv_map = defaultdict(list) 
     for (k, v) in request.ingredients.items():
-        inv_map[v].append(k)
+        inv_map[int(v)].append(k.name)
     if len(inv_map[1]) == 3 and \
         len(inv_map[0]) == 3 and \
-        request.ingredients[herbs] == 0:
+        int(request.ingredients[herbs]) == 0:
         return(True)
     elif len(inv_map[2]) == 1 and \
         len(inv_map[0]) == 5 and \
-        request.ingredients[herbs] == 0:
+        int(request.ingredients.items[herbs]) == 0:
         return(True)
-    elif request.ingredients[herbs] == 1 and len(inv_map[0]) == 5:
+    elif int(request.ingredients[herbs]) == 1 and len(inv_map[0]) == 5:
         return(True)
     else:
-        print('invalid request')
-        return(False)
-# TODO: error message so that it says specifically what is wrong with the request.
-
+        raise ValueError('invalid request: '+request.display())
 
 def transaction(basket,farmersMarket,request):
     '''moves Ingredients between two Supply objects
