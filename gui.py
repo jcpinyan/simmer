@@ -8,6 +8,8 @@ class simpleapp(tkinter.Tk):
     def __init__(self,parent):
         tkinter.Tk.__init__(self,parent)
         self.parent = parent
+        self.basket = basket
+        self.farmersMarket = farmersMarket
         self.initialize()
 
     def initialize(self):
@@ -30,7 +32,7 @@ class simpleapp(tkinter.Tk):
       # button3.grid(column=1, row=2)
 
         self.cropsVariable = tkinter.StringVar()
-        self.cropsVariable.set(farmersMarket.display())
+        self.cropsVariable.set(self.farmersMarket.display())
         crops = tkinter.Label(self, textvariable=self.cropsVariable,
                              anchor="w", fg="black", bg="green")
         crops.grid(column=2, row=0, columnspan=5, sticky='EW')
@@ -53,6 +55,10 @@ class simpleapp(tkinter.Tk):
         try:
             checkRequest(iWant)
             self.messageLine.set(iWant.display())
+            (self.basket, self.farmersMarket) =  \
+                transaction(self.basket, self.farmersMarket, iWant)
+            self.cropsVariable.set(farmersMarket.display())
+            self.messageLine.set(basket.display())
         except ValueError as e:
             self.messageLine.set(e)  
             return
