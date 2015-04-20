@@ -33,7 +33,8 @@ from collections import OrderedDict
 
 class Supply:
     '''Ingredients available in the market'''
-    def __init__(self, name, carrots, onions, celeries, peppers, garlics, bouquets):
+    def __init__(self, name, carrots, onions, celeries, \
+        peppers, garlics, bouquets):
         try:
             assert isinstance(carrots,int) and \
                     isinstance(onions,int) and \
@@ -45,7 +46,9 @@ class Supply:
             print('ingredients must be ints')
             raise
         self.name = name
-        self.ingredients = OrderedDict([(carrot,carrots), (onion,onions), (celery,celeries), (pepper,peppers), (garlic,garlics), (herbs,bouquets)])
+        self.ingredients = OrderedDict([(carrot,carrots), \
+            (onion,onions), (celery,celeries), (pepper,peppers), \
+            (garlic,garlics), (herbs,bouquets)])
 
     def __hash__(self):
         return hash(self.name)
@@ -68,7 +71,8 @@ class Supply:
 
 
 # initialize market
-farmersMarket = Supply('farmersMarket',maxIngred,maxIngred,maxIngred,maxIngred,maxIngred,HERBS)
+farmersMarket = Supply('farmersMarket', \
+    maxIngred, maxIngred, maxIngred, maxIngred, maxIngred, HERBS)
 
 # initialize basket
 basket = Supply('basket',0,0,0,0,0,0)
@@ -79,7 +83,8 @@ def checkMarket(farmersMarket,request):
         try:
             assert v <= farmersMarket.ingredients[k]
         except AssertionError:
-            print("Farmers Market only has",farmersMarket.ingredients[k],k,"but you want",v)
+            print("Farmers Market only has", \
+                farmersMarket.ingredients[k], k, "but you want", v)
             return(False)
     return(True)
    
@@ -107,7 +112,8 @@ def transaction(basket,farmersMarket,request):
         example: pay Ingredients from basket to market
     '''
     try:
-        assert checkMarket(farmersMarket, request) and checkRequest(request)
+        assert checkMarket(farmersMarket, request) and \
+            checkRequest(request)
     except AssertionError:
         print("Try again with a valid request for this market.")
         return(basket,farmersMarket)
@@ -127,15 +133,15 @@ def collectOrder():
     return(order)
 
 def goToMarket(basket,farmersMarket):
-    # warn if basket is too full
+    # TODO: warn if basket is too full
     iWant = collectOrder()
     try:
         checkRequest(iWant)
+        # TODO: get checkMarket in here as well
         (basket, farmersMarket) =  \
                 transaction(basket, farmersMarket, iWant)
     except ValueError as e:
         print(e)  
     return(basket,farmersMarket)
-
 
 
