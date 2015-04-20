@@ -2,7 +2,7 @@
 
 from market import *
 
-def makeOrder():
+def collectOrder():
     order = Supply('order',0,0,0,0,0,0)
     for i in order.ingredients.keys():
         try:
