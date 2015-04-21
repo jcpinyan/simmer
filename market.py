@@ -69,6 +69,10 @@ class Supply:
             status+=k.name+': '+str(v)+' '
         return(status)
 
+    def quantity(self):
+        '''finds how many Ingredients are in Supply'''
+        return( sum([v for v in self.ingredients.values()]) )
+
 
 # initialize market
 farmersMarket = Supply('farmersMarket', \
@@ -133,15 +137,24 @@ def collectOrder():
     return(order)
 
 def goToMarket(basket,farmersMarket):
-    # TODO: warn if basket is too full
+    '''function to get new Ingredients'''
+    # Get the order
     iWant = collectOrder()
+    # Make sure there is space in basket
+    try:
+        assert (iWant.quantity() + basket.quantity() ) <= 10
+    except AssertionError:
+        print("Not enough space in basket")
+        return(basket,farmersMarket)
+    # Make sure the request is valid and do transaction
     try:
         checkRequest(iWant)
-        # TODO: get checkMarket in here as well
+        # add checkMarket here
         (basket, farmersMarket) =  \
                 transaction(basket, farmersMarket, iWant)
     except ValueError as e:
         print(e)  
+    print(basket.name, basket.display(), \
+        farmersMarket.name, farmersMarket.display(),sep='\n')
     return(basket,farmersMarket)
-
 
