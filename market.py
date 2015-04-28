@@ -84,14 +84,12 @@ basket = Supply('basket',0,0,0,0,0,0)
 def checkMarket(farmersMarket,request):
     '''verify that market has the requested amounts'''
     for (k,v) in request.ingredients.items():
-        try:
-            assert v <= farmersMarket.ingredients[k]
-        except AssertionError:
-            print("Farmers Market only has", \
-                farmersMarket.ingredients[k], k, "but you want", v)
-            return(False)
+        if v > farmersMarket.ingredients[k]:
+            raise ValueError
+        if v == 2 and farmersMarket.ingredients[k] < 4:
+            raise ValueError
     return(True)
-   
+    
 def checkRequest(request):
     '''verify that request is valid'''
     inv_map = defaultdict(list) 
@@ -116,10 +114,9 @@ def transaction(basket,farmersMarket,request):
         example: pay Ingredients from basket to market
     '''
     try:
-        assert checkMarket(farmersMarket, request) and \
-            checkRequest(request)
-    except AssertionError:
-        print("Try again with a valid request for this market.")
+        assert checkMarket(farmersMarket, request)
+    except ValueError:
+        print("Invalid request for this market.")
         return(basket,farmersMarket)
     for (k,v) in request.ingredients.items():
         basket.ingredients[k]+=v
@@ -144,12 +141,12 @@ def goToMarket(basket,farmersMarket):
     try:
         assert (iWant.quantity() + basket.quantity() ) <= 10
     except AssertionError:
-        print("Not enough space in basket")
+        print("Not enough space in basket.")
         return(basket,farmersMarket)
     # Make sure the request is valid and do transaction
     try:
         checkRequest(iWant)
-        # add checkMarket here
+        #checkMarket(farmersMarket,iWant)
         (basket, farmersMarket) =  \
                 transaction(basket, farmersMarket, iWant)
     except ValueError as e:
