@@ -2,6 +2,13 @@
 
 Game project to improve python skills.
 
+To Do List
+---
+* Error messages should explain the exact problem
+** Example: There aren't enough to request 2 of something
+* New Recipe class similar to supply, but which also includes the points and the resource.
+
+
 Choices
 ---
 * go to farmers' market
